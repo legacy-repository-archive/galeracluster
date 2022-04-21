@@ -30,8 +30,16 @@ Galera Cluster에서 `논리 접근 방식`/`물리 접근 방식`을 통해 다
     * (예: 두 서버 모두 동일한 innodb_file_per_table 값을 사용해야 함)    
 * xtrabackup과 같은 방법 중 일부는 기증자를 비차단할 수 있다.    
 * 스크립트 가능한 SST 인터페이스를 통해 지원된다.   
-   
+
+상태 스냅샷 전송에 사용할 수 있는 특정 방법에 대한 자세한 내용은 상태 스냅샷 전송을 참조하자.        
+노드가 확인 파일에서 사용하는 State Snapshot Transfer 방법에 대해서 설정할 수 있다.        
+  
+```
+wsrep_sst_method=rsync_wan
+```
+
 ## 증분 상태 이전(IST)
+
 
   
 
