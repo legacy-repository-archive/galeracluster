@@ -74,3 +74,12 @@ Galera Replication Plugin은 wsrep API를 구현한다.
     * 복제 프로토콜을 관리하고 전체 주문 기능을 제공한다.
 * Group Communication Framework: 
     * Galera Cluster에 연결하는 다양한 그룹 통신 시스템을 위한 플러그인 아키텍처를 제공한다.
+
+## Group Communication Plugins  
+
+그룹 통신 프레임워크는 다양한 `gcomm` 시스템을 위한 플러그인 아키텍처를 제공한다.   
+Galera Cluster는 가상 동기화 QoS 를 구현하는 독점 그룹 통신 시스템 계층 위에 구축된다.    
+가상 동기화는 데이터 전달 및 클러스터 멤버십 서비스를 통합하여 메시지 전달 의미 체계에 대한 명확한 형식을 제공합니다.
+
+
+
