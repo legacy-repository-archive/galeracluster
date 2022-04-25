@@ -44,7 +44,7 @@ wsrep API는 데이터베이스 상태의 변경을 **일련의 원자적 변경
 
 클러스터의 각 노드에 대해 응용 프로그램 프로세스는 우선 순위가 높은 트랜잭션에 의해 발생한다.   
 
-## 글로벌 트랜잭션 ID
+## Global Transaction ID
  
 클러스터 전체에서 동일한 상태를 유지하기 위해        
 wsrep API는 글로벌 트랜잭션 ID 또는 GTID를 사용한다.        
@@ -61,5 +61,16 @@ wsrep API는 글로벌 트랜잭션 ID 또는 GTID를 사용한다.
 글로벌 트랜잭션 ID를 사용하면 애플리케이션 상태를 비교하고 상태 변경 순서를 설정할 수 있다.      
 이를 사용하여 변경 사항이 적용되었는지 여부와 변경 사항이 주어진 상태에 적용 가능한지 여부를 확인할 수 있다.   
 
-## Galera 복제 플러그인
+## Galera Replication Plugin
+   
+Galera Replication Plugin은 wsrep API를 구현한다.         
+즉, wsrep 공급자로 작동한다.        
+  
+보다 기술적인 관점에서 볼 때, Galera Replication Plugin은 다음과 같은 구성 요소로 구성됩니다.   
 
+* Certification Layer: 
+    * 쓰기 데이터를 준비하고 인증 검사를 수행하므로 쓰기 데이터가 적용될 수 있다.
+* Replication Layer: 
+    * 복제 프로토콜을 관리하고 전체 주문 기능을 제공한다.
+* Group Communication Framework: 
+    * Galera Cluster에 연결하는 다양한 그룹 통신 시스템을 위한 플러그인 아키텍처를 제공한다.
