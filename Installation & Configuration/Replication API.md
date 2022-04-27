@@ -46,7 +46,8 @@ wsrep API는 **데이터베이스 상태 변경을 일련의 원자적 변경 �
 * 데이터베이스에서 wsrep hook는 변경 사항을 Write-Set 으로 변환한다.    
 * `dlopen()` 호출한 다음 wsrep hook에서 wsrep provide 기능을 사용할 수 있다.   
 * Galera Replication Pulgin 은 쓰기 데이터 인증 및 클러스터 복제 처리를 진행한다.    
-   
+* 업데이트 내용을 GCache 라는 영역에 저장한다.   
+
 클러스터의 각 노드에 대해 응용 프로그램 프로세스는 우선 순위가 높은 트랜잭션에 의해 발생한다.   
   
 ## Global Transaction ID
