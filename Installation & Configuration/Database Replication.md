@@ -67,14 +67,18 @@ M = N x O x T
   
 동기식 복제 방식의 문제를 해결하기 위한 대안은 아래와 같다.     
     
-* Group Communication: 일관성을 보장하면서 노드 간의 통신을 위한 높은 단계의 gcomm 또는 spread 
-* Write-Set : 너무 많은 Node coordination을  피하기 위해 단일 기록 집합을 작성하여 노드간의 작업 수를 줄입니다.
-* 데이터베이스 상태 장치: 
+* **Group Communication :** 일관성을 보장하면서 노드 간의 통신을 위한 높은 단계의 gcomm 또는 spread 
+* **Write-Set :** 너무 많은 Node coordination을  피하기 위해 단일 기록 집합을 작성하여 노드간의 작업 수를 줄인다.
+* **갈레라 클러스터 자체적인 GTID 사용 :** MariaDB GTID 복제 매카니즘은 사용하지 않는다. 
+* **데이터베이스 상태 장치 :** 
     * 읽기 트랜잭션은 로컬 노드에서 처리한다.   
     * 쓰기 트랜잭션은 로컬에서 Shadow copy로 수행 되어 인증과 커밋을 위해 다른 노드에 읽기 집합으로 브로드캐스트한다.  
-트랜잭션 재배열: 
-    * 다른 노드와 트랜잭션 완료전에 트랜잭션을 재배열합니다. 
-    * 이로써 성공적인 트랜잭션 인증 테스트의 숫자를 증가시킬 수 있습니다.
-* 갈레라 클러스터 자체적인 GTID 사용: MariaDB GTID 복제 매카니즘은 사용하지 않습니다.
+* **트랜잭션 재배열 :** 
+    * 다른 노드와 트랜잭션 완료전에 트랜잭션을 재배열한다. 
+    * 이로써 성공적인 트랜잭션 인증 테스트의 숫자를 증가시킬 수 있다.
        
 Galera Cluster가 사용하는 인증 기반 복제 시스템은 이러한 접근 방식을 기반으로 구축되었다.
+
+# 참고 
+* [갈레라 클러스터 레퍼런스](https://galeracluster.com/library/documentation/index.html)
+* [갈레라 클러스터 (Galera Cluster): Multi Master Replication] https://rastalion.me/galera-cluster/
