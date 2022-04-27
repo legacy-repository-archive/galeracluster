@@ -17,21 +17,21 @@ Received Queue 내의 데이터량이 줄어들면 노드는 다시 복제를 �
   
 ## 노드 상태 이해  
         
-Galera Cluster는 노드 상태에 따라 여러 형태의 Flow Control을 구현한다.         
+Galera Cluster 는 상태에 따라 여러 형태의 Flow Control을 구현한다.         
 Flow Control 구현체는 가상 동기화가 제공하는 논리적인 것과는 대조적으로 시간적 동기화와 일관성을 보장한다.      
          
 **Flow Control 에는 기본적으로 네 가지 종류가 있다.**       
-* 흐름 제어 없음
-* 쓰기 세트 캐싱
-* 따라잡기
-* 클러스터 동기화
+* No Flow Control
+* Write-Set Caching  
+* Catching Up
+* Cluster Sync  
 
 ## No Flow Control
-       
-No Flow Control은 노드가 OPEN 또는 PRIMARY 상태일 때 적용된다.           
-즉, 노드가 OPEN 또는 PRIMARY 상태인 경우 유지하면 클러스터의 일부로 간주되지 않는다.         
-이러한 노드는 쓰기 세트를 복제, 적용 또는 캐시할 수 없다.      
-
+          
+OPEN 또는 PRIMARY 상태일 때 작동하는 FlowControl 이다.     
+노드가 OPEN 또는 PRIMARY 상태를 유지하면 클러스터의 일부로 간주하지 않는다.           
+이 상태의 노드는 Write-Set을 복제 및 적용 또는 캐시할 수 없다.         
+  
 ## Write-Set Caching  
            
 Write-Set Caching는 노드가 JOINER 및 DONOR 상태일 때 적용된다.        
