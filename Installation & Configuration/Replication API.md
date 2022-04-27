@@ -61,9 +61,9 @@ GTID 를 이용해 상태 변경을 식별하고 마지막 상태 변경과 비�
 ```  
   
 GTID(Global Transaction ID)는 다음 구성 요소로 구성된다.         
-* State UUID : 상태에 대한 고유 식별자와 상태가 겪는 변경 순서를 나타낸다.       
-* Ordinal Sequence Number : seqno는 시퀀스의 변경 위치를 나타내는 데 사용되는 64비트 부호 있는 정수다.   
-     
+* **State UUID :** 상태에 대한 고유 식별자와 상태가 겪는 변경 순서를 나타낸다.       
+* **Ordinal Sequence Number :** seqno는 시퀀스의 변경 위치를 나타내는 데 사용되는 64비트 부호 있는 정수다.   
+       
 글로벌 트랜잭션 ID를 사용하면 애플리케이션 상태를 비교하고 상태 변경 순서를 설정할 수 있다.      
 이를 사용하여 변경 사항이 적용되었는지 여부와 변경 사항이 주어진 상태에 적용 가능한지 여부를 확인할 수 있다.   
 
@@ -72,27 +72,27 @@ GTID(Global Transaction ID)는 다음 구성 요소로 구성된다.
 Galera Replication Plugin은 wsrep API 의 구현체로 wsrep Provider 역할을 맡고 있다.   
    
 기술적인 관점으로, Galera Replication Plugin은 다음과 같은 구성 요소로 구성된다.     
-* Certification Layer : 
+* **Certification Layer :**   
     * Write-Set을 준비하고 인증 검사를 수행하므로 Write-Set이 적용될 수 있다.
-* Replication Layer : 
+* **Replication Layer :** 
     * 복제 프로토콜을 관리하고 전체 주문 기능을 제공한다.
-* Group Communication Framework : 
+* **Group Communication Framework :** 
     * 다양한 Group Communication System을 위한 플러그인 아키텍처를 제공한다.
 
 ## Group Communication Plugins  
 
 Group Communication Framework는 다양한 Group Communication System 을 위한 플러그인 아키텍처를 제공한다.       
-Galera Cluster는 가상 동기화 QoS(QualityOfSystem) 를 구현하는 독점 그룹 통신 시스템 계층 위에 구축된다.         
-가상 동기화는 데이터 전달 및 클러스터 멤버십 서비스를 통합하여 메시지 전달 의미 체계에 대한 명확한 형식을 제공한다.     
+Galera Cluster는 `가상 동기화 QoS(QualityOfSystem)`를 구현하는 독점 그룹 통신 시스템 계층 위에 구축된다.         
+가상 동기화는 데이터 전송 및 클러스터 멤버십 서비스를 통합하여 메시지 전달 의미에 대한 명확한 형식을 제공한다.  
+
+가상 동기화는 일관성을 보장하지만 원활한 다중 마스터 작업에 필요한 시간 동기화를 보장하지는 않는다.           
+이를 해결하기 위해 Galera Cluster는 자체 런타임 구성 가능 시간 흐름 제어를 구현한다.         
+**흐름 제어는 노드 동기화를 단 몇초만에 동기화할 수 있도록 한다.**         
+      
+Group Communication Framework 또한 여러 소스에서 온 메시지의 전체 순서를 제공한다.        
+이를 사용 하여 Multi Master(Main) Cluster 에서 Global Transaction ID 를 생성한다.          
        
-가상 동기화는 일관성을 보장하지만 원활한 다중 마스터 작업에 필요한 시간적 동기화를 보장하지는 않는다.           
-이 문제를 해결하기 위해 Galera Cluster는 자체 런타임 구성 가능 시간 흐름 제어를 구현한다.         
-**흐름 제어는 노드 동기화를 1초 미만으로 유지한다.**        
-    
-그룹 커뮤니케이션 프레임워크는 또한 여러 소스에서 온 메시지의 전체 순서를 제공한다.       
-이를 사용 하여 다중 마스터 클러스터에서 글로벌 트랜잭션 ID 를 생성 한다.      
-     
-전송 수준에서 Galera Cluster는 대칭 무방향 그래프다.       
+전송 수준에서 Galera Cluster는 무방향 대칭 그래프다.       
 모든 데이터베이스 노드는 TCP 연결 을 통해 서로 연결된다.        
 기본적으로 TCP 는 메시지 복제와 클러스터 구성원 서비스 모두에 사용된다.      
 그러나 LAN 에서 복제를 위해 UDP 멀티캐스트를 사용할 수도 있다.   
