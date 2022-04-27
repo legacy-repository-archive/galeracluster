@@ -33,17 +33,17 @@ OPEN 또는 PRIMARY 상태일 때 작동하는 FlowControl 이다.
 이 상태의 노드는 Write-Set을 복제 및 적용 또는 캐시할 수 없다.         
   
 ## Write-Set Caching  
-           
-Write-Set Caching는 노드가 JOINER 및 DONOR 상태일 때 적용된다.        
-노드는 이 상태에 있는 동안 **쓰기 세트를 적용할 수 없으며 나중을 위해 캐시해야 한다.**               
+             
+JOINER 및 DONOR 상태일 때 작동하는 FlowControl 이다.       
+노드는 **쓰기 세트를 적용할 수 없으며 나중을 위해 캐시해야 한다.**                 
 모든 복제를 중지하는 것 외에는 노드를 클러스터와 동기화된 상태로 유지하는 합리적인 방법이 없다.      
-     
-쓰기 세트 캐시가 구성된 크기를 초과하지 않도록 **복제 속도를 제한할 수 있다.**      
-다음 매개변수를 사용하여 쓰기 세트 캐시를 제어할 수 있다.     
-  
-* gcs.recv_q_hard_limit : 최대 쓰기 세트 캐시 크기(바이트).
-* gcs.max_throttle : 노드가 클러스터에서 허용할 수 있는 일반 복제 속도에 대한 가장 작은 부분이다.
-* gcs.recv_q_soft_limit : 노드의 평균 복제 속도 추정치.
+       
+**Write-Set Cache가 할당된 크기를 초과하지 않도록 복제 속도를 제한할 수 있다.**         
+다음 매개변수를 사용하여 Write-Set Cache를 제어할 수 있다.       
+    
+* **gcs.recv_q_hard_limit :** 최대 쓰기 세트 캐시 크기(바이트).
+* **gcs.max_throttle :** 노드가 클러스터에서 허용할 수 있는 일반 복제 속도에 대한 가장 작은 부분이다.
+* **gcs.recv_q_soft_limit :** 노드의 평균 복제 속도 추정치.
   
 ## Catching Up
            
