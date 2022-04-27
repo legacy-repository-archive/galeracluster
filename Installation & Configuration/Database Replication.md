@@ -16,9 +16,10 @@ Replica DB 서버는 Main 부터 업데이트 스트림을 수신하고 변경 �
 
 ![synchronousreplication](https://user-images.githubusercontent.com/50267433/164360556-850e1775-727b-4ab6-b25f-d7958769e429.png)
 
-다중 이중화 시스템에서는 아무 노드에나 업데이트를 제출할 수 있으며 네트워크를 통해 다른 데이터베이스 노드로 전파된다.    
+Multi Main Replication 시스템에서는 아무 노드에나 업데이트를 제출할 수 있으며 네트워크를 통해 다른 데이터베이스 노드로 전파된다.    
 이러한 동작이 가능한 이유는 모든 데이터베이스 서버가 메인으로 동작하기 때문이다.               
 단, 변경에 대한 로그가 없으며 업데이트 성공 여부를 알려주는 표시가 전송되지 않는다.        
+**갈레라 클러스터는 Multi Master RDB Cluster로 위와 같은 프로세스를 따른다.**     
   
 ## Asynchronous and Synchronous Replication(동기 및 비동기 이중화)  
 노드간의 관계 설정 외에도 클러스터를 통해 데이터베이스 트랜잭션을 전파하는 프로토콜도 존재한다.   
