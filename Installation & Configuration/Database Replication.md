@@ -81,4 +81,4 @@ Galera Cluster가 사용하는 인증 기반 복제 시스템은 이러한 접�
 
 # 참고 
 * [갈레라 클러스터 레퍼런스](https://galeracluster.com/library/documentation/index.html)
-* [갈레라 클러스터 (Galera Cluster): Multi Master Replication] https://rastalion.me/galera-cluster/
+* [갈레라 클러스터 (Galera Cluster): Multi Master Replication](https://rastalion.me/galera-cluster/)
