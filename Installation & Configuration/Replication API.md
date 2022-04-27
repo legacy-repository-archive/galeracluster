@@ -91,8 +91,8 @@ Galera Cluster는 `가상 동기화 QoS(QualityOfSystem)`를 구현하는 독점
       
 Group Communication Framework 또한 여러 소스에서 온 메시지의 전체 순서를 제공한다.        
 이를 사용 하여 Multi Master(Main) Cluster 에서 Global Transaction ID 를 생성한다.          
-       
-전송 수준에서 Galera Cluster는 무방향 대칭 그래프다.       
-모든 데이터베이스 노드는 TCP 연결 을 통해 서로 연결된다.        
-기본적으로 TCP 는 메시지 복제와 클러스터 구성원 서비스 모두에 사용된다.      
-그러나 LAN 에서 복제를 위해 UDP 멀티캐스트를 사용할 수도 있다.   
+         
+전송 수준에서 Galera Cluster의 네트워크 구조는 무방향 대칭 그래프다.        
+모든 데이터베이스 노드는 TCP Connection 을 통해 서로 연결한다.        
+일반적으로 TCP는 메시지 복제와 클러스터 구성원 서비스 모두에서 사용된다.      
+그러나 LAN 에서 복제를 위해 UDP 멀티캐스트를 사용할 수도 있다.    
