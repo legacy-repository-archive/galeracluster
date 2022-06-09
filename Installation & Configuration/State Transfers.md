@@ -86,7 +86,7 @@ Galera Cluster에서 `논리 접근 방식`/`물리 접근 방식`을 통해 다
 
 상태 스냅샷 전송에 사용할 수 있는 특정 방법에 대한 자세한 내용은 상태 스냅샷 전송을 참조하자.        
 노드가 확인 파일에서 사용하는 State Snapshot Transfer 방법에 대해서 설정할 수 있다.        
-  
+    
 ```
 wsrep_sst_method=rsync_wan
 ```
