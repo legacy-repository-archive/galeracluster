@@ -11,29 +11,32 @@
 
 ![asynchronousreplication](https://user-images.githubusercontent.com/50267433/164360492-25bade02-af8a-476d-a07c-eaffc65bf90e.png)
     
-Main DB 서버는 데이터 업데이트를 기록하고 해당 **로그를 네트워크를 통해 Replica로 전파한다.**       
-Replica DB 서버는 Main 부터 업데이트 스트림을 수신하고 변경 사항을 적용한다.       
+Main DB 서버는 데이터 업데이트를 기록하고 **해당 업데이트 로그를 네트워크를 통해 Replica DB로 전파한다.**       
+Replica DB 서버는 Main DB서버로 부터 업데이트 스트림을 수신하고 변경 사항을 적용한다.       
 
 ![synchronousreplication](https://user-images.githubusercontent.com/50267433/164360556-850e1775-727b-4ab6-b25f-d7958769e429.png)
 
-Multi Main Replication 시스템에서는 아무 노드에나 업데이트를 제출할 수 있으며 네트워크를 통해 다른 데이터베이스 노드로 전파된다.    
-이러한 동작이 가능한 이유는 모든 데이터베이스 서버가 메인으로 동작하기 때문이다.               
+Multi Main(Master) Replication 시스템에서는 아무 노드에나 업데이트 할 수 있으며 네트워크를 통해 다른 데이터베이스 노드로 전파된다.    
 단, 변경에 대한 로그가 없으며 업데이트 성공 여부를 알려주는 표시가 전송되지 않는다.        
-**갈레라 클러스터는 Multi Master RDB Cluster로 위와 같은 프로세스를 따른다.**     
+**갈레라 클러스터는 Multi Main(Master) RDB Cluster로 위와 같은 프로세스를 따른다.**     
   
-## Asynchronous and Synchronous Replication(동기 및 비동기 이중화)  
-노드간의 관계 설정 외에도 클러스터를 통해 데이터베이스 트랜잭션을 전파하는 프로토콜도 존재한다.   
-   
-* Synchronous Replication :    
-    * 빠른 복제 방식을 지원한다.  
-    * Main DB는 복제본 업데이트를 동기적으로 전파한다.  
-    * Main 노드가 복제본을 전파했을 때 트랜잭션이 커밋기에 모든 노드들은 동기화 상태로 유지된다.   
-* Asynchronous Replication :      
-    * 느린 복제 방식을 지원한다.   
-    * Main DB는 복제본 업데이트를 비동기적으로 전파한다.   
-    * **Main 노드가 복제본을 전파한 이후 트랜잭션이 커밋되기에 짧은 시간 동안 일부 노드는 다른 값을 보유할 수 있다.**   
+## Asynchronous and Synchronous Replication(비동기 및 동기 이중화)    
+관계를 가진 데이터베이스 서버끼리 트랜잭션을 전파하는 프로토콜에도 여러 종류가 있다.    
+     
+**Synchronous Replication(동기식 복제)**     
+* 빠른 복제 방식을 지원한다.    
+* Main DB는 복제본 업데이트를 동기적으로 전파한다.  
+  즉, Main DB에서 다른 DB로 전파가 완료되면 커밋이 된다.   
+* 모든 노드들은 동기화된 상태로 유지된다.   
+ 
+**Asynchronous Replication**      
+* 느린 복제 방식을 지원한다.   
+* Main DB는 복제본 업데이트를 비동기적으로 전파한다.   
+  즉, Main DB에서 다른 DB로 전파시 비동기 복제를 진행하고 커밋된다.   
+* 다른 노드가 동기화가 되지 전에 커밋이 될 수 있으므로 특정 시간동안 일부 노드는 다른 값을 보유할 수 있다.  
 
-빠르고 느리다는 것은 전파 속도라기 보다는 동기화되는 시점이라고 이해하면 좋다.   
+모든 노드가 동기화 되는 시점에 따라, 이른/느린 으로 구분한다고 생각하면 좋다.      
+비동기는 메인 노드가 빨리 커밋되지만 전체적인 동기화 시점은 느리다고 보면 된다.    
 
 ## Advantages of Synchronous Replication
 
