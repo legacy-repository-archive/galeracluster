@@ -22,7 +22,7 @@ Galera Cluster의 내부 아키텍처는 4가지 구성 요소를 중심으로 �
 * **데이터베이스 관리 시스템(DBMS)**     
   * 데이터베이스 서버
   * Galera Cluster는 MySQL, MariaDB 또는 Percona XtraDB를 사용할 수 있다.         
-* **wsrep API**     
+* **wsrep API(Write-Set Replication API)**        
   * 데이터베이스용 복제 플러그인 인터페이스(2가지 요소로 구성)
       * **wsrep Hooks :** 쓰기 데이터 복제를 위해 데이터베이스 서버 엔진과 통합된다.
       * **dlopen() :** wsrep 후크에서 wsrep 공급자를 사용할 수 있도록 한다.
@@ -32,12 +32,13 @@ Galera Cluster의 내부 아키텍처는 4가지 구성 요소를 중심으로 �
   * Galera Cluster에서 사용 가능한 Group Communication 플러그인들이 있다.   
   * 예시: gcomm 및 Spread   
   
-## wsrep API
+## wsrep API(Write-Set Replication API)
 
 ![ReflicationAPI](https://user-images.githubusercontent.com/50267433/165448416-60772e85-8536-4e1f-9f3d-a5da61356ec9.png)
 
 **wsrep API** 는 데이터베이스용 **복제 플러그인 인터페이스다.**      
 애플리케이션 콜백 및 복제 플러그인 호출 세트를 정의한다.       
+실제 구현은 `galera replication plugin` 이루어진다.  
    
 wsrep API는 데이터베이스 서버를 상태로 간주하는 복제 모델을 사용한다.      
 **데이터베이스가 사용 중이고 클라이언트가 데이터베이스 콘텐츠를 수정하면 상태가 변경된다**             
