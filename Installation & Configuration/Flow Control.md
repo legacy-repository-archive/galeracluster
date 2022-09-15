@@ -10,11 +10,11 @@ Galera Cluster는 클러스터의 모든 노드에 순서대로 트랜잭션이 
               
 노드는 **클러스터에서 Write-Set 을 수신하고 이를 전역 순서로 구성한다.**              
 **적용 및 커밋되지 않은 트랜잭션이 있다면 이를 Received Queue에 보관한다.**        
-          
-Received Queue 가 특정 크기에 도달하면 FlowControl을 동작시킨다.           
-노드는 복제를 일시 중지한 다음 수신된 대기열의 WriteSet에 대해서 작업한다.        
-Received Queue 내의 데이터량이 줄어들면 노드는 다시 복제를 재개한다.        
-  
+            
+**Received Queue 가 특정 크기에 도달하면 FlowControl을 동작시킨다.**               
+노드는 복제를 일시 중지한 다음 수신된 대기열의 WriteSet에 대해서 작업한다.         
+Received Queue 내의 데이터량이 줄어들면 노드는 다시 복제를 재개한다.          
+    
 ## 노드 상태 이해  
         
 Galera Cluster 는 상태에 따라 여러 형태의 Flow Control을 구현한다.         
