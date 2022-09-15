@@ -77,7 +77,7 @@ GTID(Global Transaction ID)는 다음 구성 요소로 구성된다.
 Galera Replication Plugin은 wsrep API 의 구현체로 **wsrep Provider 역할을 맡고 있다.**      
 기술적인 관점으로, Galera Replication Plugin은 다음과 같은 구성 요소로 구성된다.           
 * **Certification Layer :** Write-Set을 준비하고 인증 검사를 수행하므로 Write-Set이 적용될 수 있다.(인증기반복제)   
-* **Replication Layer :** 복제 프로토콜을 관리하고 복제와 관련된 명령을 제공한다.      
+* **Replication Layer :** 복제 프로토콜을 관리하고 복제와 관련된 순서를 제공한다.      
 * **Group Communication Framework :** 다양한 Group Communication System을 위한 플러그인 아키텍처를 제공한다.       
    
 ## Group Communication Plugins  
